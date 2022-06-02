@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  database:
+    container_name: api-db
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: api-db
+      PGDATA: /var/lib/postgres/data/pgdata
+    ports:
+      - 5432:5432
