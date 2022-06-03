@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"go-api/database"
 	"go-api/routes"
 	"log"
@@ -10,15 +11,17 @@ import (
 func setupRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
-	api.Get("/categories", routes.FindCategories)
+	routes.CreateCategoriesRoutes(api)
+	routes.CreateBookRoutes(api)
 }
 
 func main() {
 	database.ConnectDb()
 
 	app := fiber.New()
+	app.Use(logger.New())
 
 	setupRoutes(app)
 
-	log.Fatal(app.Listen(":3000"))
+	log.Fatal(app.Listen("localhost:3000"))
 }

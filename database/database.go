@@ -16,7 +16,7 @@ func ConnectDb() {
 		log.Fatalln("Error with connection to database", err)
 	}
 
-	err = db.AutoMigrate(&models.Category{}, &models.Book{}, &models.Author{})
+	err = db.AutoMigrate(&models.Category{}, &models.Book{})
 	if err != nil {
 		log.Println("Error with migrations", err)
 	}
