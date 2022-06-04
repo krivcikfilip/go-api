@@ -20,6 +20,7 @@ my first touch with go language
 > go run main.go
 
 ### Endpoints
+prefix **/api**
 
 #### Categories
 | Method | Route           | Body                 |
