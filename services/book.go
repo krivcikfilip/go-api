@@ -64,7 +64,11 @@ func CreateBook(bookInput CreateBookInput) (Book, ErrorResponse) {
 	}
 
 	res := database.GORM.Create(&book)
-	return book, ErrorResponse{Message: res.Error.Error(), Status: 400}
+	if res.Error != nil {
+		return Book{}, ErrorResponse{Message: res.Error.Error(), Status: 400}
+	}
+
+	return book, ErrorResponse{}
 }
 
 // UpdateBook
@@ -85,5 +89,9 @@ func UpdateBook(id int, bookInput UpdateBookInput) (Book, ErrorResponse) {
 	}
 
 	res := database.GORM.Save(book)
-	return book, ErrorResponse{Message: res.Error.Error(), Status: 400}
+	if res.Error != nil {
+		return Book{}, ErrorResponse{Message: res.Error.Error(), Status: 400}
+	}
+
+	return book, ErrorResponse{}
 }
