@@ -1,6 +1,11 @@
-version: "2"
+version: "3.9"
 
 services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
   database:
     container_name: api-db
     image: postgres
@@ -8,6 +13,9 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: test
       POSTGRES_DB: api-db
-      PGDATA: /var/lib/postgres/data/pgdata
+    volumes:
+      - dbdata:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
+volumes:
+  dbdata:

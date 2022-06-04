@@ -9,8 +9,14 @@ import (
 
 var GORM *gorm.DB
 
+// ConnectDb
+// connect and initialize database with GORM
 func ConnectDb() {
-	dsn := "host=localhost user=root password=test dbname=api-db port=5432"
+
+	// When using docker host={service_name} -> host=database
+	// When using locally host=localhost
+	dsn := "host=database user=root password=test dbname=api-db port=5432"
+
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalln("Error with connection to database", err)

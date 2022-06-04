@@ -7,6 +7,8 @@ import (
 	. "go-api/models"
 )
 
+// findBookCategories
+// find and append book categories by ids
 func findBookCategories(book *Book, ids []int) ErrorResponse {
 	var categories []Category
 
@@ -23,6 +25,8 @@ func findBookCategories(book *Book, ids []int) ErrorResponse {
 	return ErrorResponse{}
 }
 
+// FindBooks
+// find books
 func FindBooks() ([]Book, ErrorResponse) {
 	var books []Book
 
@@ -34,7 +38,9 @@ func FindBooks() ([]Book, ErrorResponse) {
 	return books, ErrorResponse{}
 }
 
-func FindBook(id int) (Book, ErrorResponse) {
+// FindBookById
+// find book by id
+func FindBookById(id int) (Book, ErrorResponse) {
 	var book Book
 
 	res := database.GORM.Preload("Categories").First(&book, id)
@@ -45,6 +51,8 @@ func FindBook(id int) (Book, ErrorResponse) {
 	return book, ErrorResponse{}
 }
 
+// CreateBook
+// create book from input
 func CreateBook(bookInput CreateBookInput) (Book, ErrorResponse) {
 	var book Book
 
@@ -59,8 +67,10 @@ func CreateBook(bookInput CreateBookInput) (Book, ErrorResponse) {
 	return book, ErrorResponse{Message: res.Error.Error(), Status: 400}
 }
 
+// UpdateBook
+// update book from input
 func UpdateBook(id int, bookInput UpdateBookInput) (Book, ErrorResponse) {
-	book, err := FindBook(id)
+	book, err := FindBookById(id)
 	if err.Message != "" {
 		return Book{}, err
 	}

@@ -8,6 +8,8 @@ import (
 	"go-api/utils"
 )
 
+// CreateCategoriesRoutes
+// create categories routes
 func CreateCategoriesRoutes(api fiber.Router) {
 	router := api.Group("/categories")
 
@@ -17,6 +19,8 @@ func CreateCategoriesRoutes(api fiber.Router) {
 	router.Post("/", createCategory)
 }
 
+// findCategories
+// find categories route
 func findCategories(c *fiber.Ctx) error {
 	categories, err := services.FindCategories()
 	if err.Message != "" {
@@ -26,6 +30,8 @@ func findCategories(c *fiber.Ctx) error {
 	return c.Status(200).JSON(categories)
 }
 
+// findCategory
+// find category route
 func findCategory(c *fiber.Ctx) error {
 	categoryId, _ := c.ParamsInt("id")
 
@@ -37,6 +43,8 @@ func findCategory(c *fiber.Ctx) error {
 	return c.Status(200).JSON(category)
 }
 
+// createCategory
+// create category route
 func createCategory(c *fiber.Ctx) error {
 	var categoryInput inputs.CreateCategoryInput
 
@@ -58,6 +66,8 @@ func createCategory(c *fiber.Ctx) error {
 	return c.Status(200).JSON(category)
 }
 
+// updateCategory
+// update category route
 func updateCategory(c *fiber.Ctx) error {
 	categoryId, _ := c.ParamsInt("id")
 

@@ -13,6 +13,8 @@ type ErrorResponseWithField struct {
 	Field   string
 }
 
+// CreateErrorMap
+// create error map for json response
 func CreateErrorMap(errorResponse ErrorResponse) interface{} {
 	return fiber.Map{
 		"error":  errorResponse.Message,
@@ -20,6 +22,8 @@ func CreateErrorMap(errorResponse ErrorResponse) interface{} {
 	}
 }
 
+// CreateErrorMapWithField
+// create error map with field for json response
 func CreateErrorMapWithField(errorResponse ErrorResponseWithField) interface{} {
 	return fiber.Map{
 		"error":  errorResponse.Message,

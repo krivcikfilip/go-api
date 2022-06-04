@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+// createErrorMessage
+// create error message by tag and value
 func createErrorMessage(tag string, value string) string {
 	switch tag {
 	case "required":
@@ -17,6 +19,8 @@ func createErrorMessage(tag string, value string) string {
 	return ""
 }
 
+// ParseInput
+// parse and transform request body
 func ParseInput(c *fiber.Ctx, input interface{}) ErrorResponse {
 	err := c.BodyParser(&input)
 	if err != nil {
@@ -26,6 +30,8 @@ func ParseInput(c *fiber.Ctx, input interface{}) ErrorResponse {
 	return ErrorResponse{}
 }
 
+// ValidateInput
+// validate input body
 func ValidateInput(input interface{}) ErrorResponseWithField {
 	validate := validator.New()
 	var errorField ErrorResponseWithField

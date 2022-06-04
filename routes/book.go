@@ -8,6 +8,8 @@ import (
 	"go-api/utils"
 )
 
+// CreateBookRoutes
+// create book routes
 func CreateBookRoutes(api fiber.Router) {
 	router := api.Group("/books")
 
@@ -17,6 +19,8 @@ func CreateBookRoutes(api fiber.Router) {
 	router.Post("/", createBook)
 }
 
+// findBooks
+// find books route
 func findBooks(c *fiber.Ctx) error {
 	books, err := services.FindBooks()
 	if err.Message != "" {
@@ -26,10 +30,12 @@ func findBooks(c *fiber.Ctx) error {
 	return c.Status(200).JSON(books)
 }
 
+// findBook
+// find book route
 func findBook(c *fiber.Ctx) error {
 	bookId, _ := c.ParamsInt("id")
 
-	book, err := services.FindBook(bookId)
+	book, err := services.FindBookById(bookId)
 	if err.Message != "" {
 		return errors.CustomError(c, err)
 	}
@@ -37,6 +43,8 @@ func findBook(c *fiber.Ctx) error {
 	return c.Status(200).JSON(book)
 }
 
+// createBook
+// create book route
 func createBook(c *fiber.Ctx) error {
 	var bookInput inputs.CreateBookInput
 
@@ -58,6 +66,8 @@ func createBook(c *fiber.Ctx) error {
 	return c.Status(200).JSON(book)
 }
 
+// updateBook
+// update book route
 func updateBook(c *fiber.Ctx) error {
 	bookId, _ := c.ParamsInt("id")
 

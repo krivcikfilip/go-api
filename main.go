@@ -8,6 +8,8 @@ import (
 	"log"
 )
 
+// setupRoutes
+// setup app routes
 func setupRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
@@ -15,6 +17,7 @@ func setupRoutes(app *fiber.App) {
 	routes.CreateBookRoutes(api)
 }
 
+// main func
 func main() {
 	database.ConnectDb()
 
@@ -23,5 +26,5 @@ func main() {
 
 	setupRoutes(app)
 
-	log.Fatal(app.Listen("localhost:3000"))
+	log.Fatal(app.Listen(":8080"))
 }

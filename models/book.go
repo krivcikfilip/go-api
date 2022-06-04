@@ -2,6 +2,7 @@ package models
 
 import "time"
 
+// Book model
 type Book struct {
 	ID         uint64     `json:"id" gorm:"primaryKey"`
 	Name       string     `json:"name"`

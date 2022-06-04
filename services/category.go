@@ -7,6 +7,8 @@ import (
 	. "go-api/models"
 )
 
+// FindCategories
+// find categories
 func FindCategories() ([]Category, ErrorResponse) {
 	var categories []Category
 
@@ -18,6 +20,8 @@ func FindCategories() ([]Category, ErrorResponse) {
 	return categories, ErrorResponse{}
 }
 
+// FindCategoryById
+// find category by id
 func FindCategoryById(id int) (Category, ErrorResponse) {
 	var category Category
 
@@ -29,6 +33,8 @@ func FindCategoryById(id int) (Category, ErrorResponse) {
 	return category, ErrorResponse{}
 }
 
+// CreateCategory
+// create category from input
 func CreateCategory(categoryInput CreateCategoryInput) (Category, ErrorResponse) {
 	var category Category
 
@@ -42,6 +48,8 @@ func CreateCategory(categoryInput CreateCategoryInput) (Category, ErrorResponse)
 	return category, ErrorResponse{}
 }
 
+// UpdateCategory
+// update category from input
 func UpdateCategory(id int, categoryInput UpdateCategoryInput) (Category, ErrorResponse) {
 	category, err := FindCategoryById(id)
 	if err.Message != "" {
