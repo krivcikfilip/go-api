@@ -1,11 +1,6 @@
-version: "3.9"
+version: "3.8"
 
 services:
-  app:
-    build:
-      context: .
-    ports:
-      - "8080:8080"
   database:
     container_name: api-db
     image: postgres
@@ -13,9 +8,24 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: test
       POSTGRES_DB: api-db
-    volumes:
-      - dbdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root -d api-db" ]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+
+  app:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+
 volumes:
   dbdata:

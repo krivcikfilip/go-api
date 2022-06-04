@@ -18,3 +18,21 @@ my first touch with go language
 
 #### Without Air
 > go run main.go
+
+### Endpoints
+
+#### Categories
+| Method | Route           | Body                 |
+|--------|-----------------|----------------------|
+| GET    | /categories     |                      |
+| GET    | /categories/:id |                      |
+| POST   | /categories     | `{"name": "scifi" }` |
+| PUT    | /categories/:id | `{"name": "drama" }` |
+
+#### Books
+| Method | Route      | Body                                                  |
+|--------|------------|-------------------------------------------------------|
+| GET    | /books     |                                                       |
+| GET    | /books/:id |                                                       |
+| POST   | /books     | `{"name": "harry potter"`                             |
+| PUT    | /books/:id | `{"name": "harry potter 2", "categories": [1, 2] } }` |
